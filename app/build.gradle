@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
 
+apply plugin: 'kotlin-kapt'
+
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -16,20 +18,49 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+
+        buildTypes.each {
+            it.buildConfigField 'String', 'API_KEY', '"' + FOOTBALL_DATA_API_KEY + '"'
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.google.dagger:dagger:2.11'
+    kapt 'com.google.dagger:dagger-compiler:2.11'
+    compile 'com.google.dagger:dagger-android:2.11'
+    compile 'com.google.dagger:dagger-android-support:2.11' // if you use the support libraries
+    kapt 'com.google.dagger:dagger-android-processor:2.11'
+
     implementation 'com.android.support:appcompat-v7:26.1.0'
+
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    implementation "android.arch.lifecycle:extensions:1.0.0-beta1"
+    implementation "android.arch.lifecycle:common-java8:1.0.0-beta1"
+    implementation "android.arch.lifecycle:common:1.0.1"
+
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    //Paging Library
+    implementation "android.arch.paging:runtime:1.0.0-alpha2"
+
     testImplementation 'junit:junit:4.12'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.9.0'
+    implementation 'com.google.code.gson:gson:2.8.2'
+
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }
