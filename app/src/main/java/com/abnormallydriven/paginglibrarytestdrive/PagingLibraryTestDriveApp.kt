@@ -2,21 +2,25 @@ package com.abnormallydriven.paginglibrarytestdrive
 
 import android.app.Activity
 import android.app.Application
+import android.app.Service
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
+import dagger.android.HasServiceInjector
 import javax.inject.Inject
 
 
-class PagingLibraryTestDriveApp: Application(), HasActivityInjector {
+class PagingLibraryTestDriveApp: Application(), HasActivityInjector, HasServiceInjector {
 
     companion object {
         lateinit var applicationComponent : ApplicationComponent
     }
 
     @Inject
-    lateinit var dispatchingAndroidInjector : DispatchingAndroidInjector<Activity>
+    lateinit var dispatchingActivityInjector: DispatchingAndroidInjector<Activity>
 
+    @Inject
+    lateinit var dispatchingServiceInjector : DispatchingAndroidInjector<Service>
 
     override fun onCreate() {
         super.onCreate()
@@ -29,7 +33,11 @@ class PagingLibraryTestDriveApp: Application(), HasActivityInjector {
     }
 
     override fun activityInjector(): AndroidInjector<Activity> {
-        return dispatchingAndroidInjector
+        return dispatchingActivityInjector
+    }
+
+    override fun serviceInjector(): AndroidInjector<Service> {
+        return dispatchingServiceInjector
     }
 
 }

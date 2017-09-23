@@ -15,7 +15,7 @@ abstract class TeamListInjectorModule{
     @Binds
     @IntoMap
     @ActivityKey(TeamListActivity::class)
-    abstract fun bindInjectorFactory(builder : TeamListSubcomponent.Builder) : AndroidInjector.Factory<Activity>
+    abstract fun bindInjectorFactory(builder : TeamListSubcomponent.Builder) : AndroidInjector.Factory<out Activity>
 
 }
 

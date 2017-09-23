@@ -1,5 +1,6 @@
 package com.abnormallydriven.paginglibrarytestdrive
 
+import com.abnormallydriven.paginglibrarytestdrive.sync.FootballApi
 import dagger.Module
 import dagger.Provides
 import okhttp3.*
@@ -49,6 +50,12 @@ class HttpModule {
                 .baseUrl("http://www.football-data.org/v1/")
                 .client(okhttpClient)
                 .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideFootballApiService(retrofit : Retrofit) : FootballApi{
+        return retrofit.create(FootballApi::class.java)
     }
 
 }
