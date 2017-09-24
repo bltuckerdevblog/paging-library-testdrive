@@ -14,6 +14,7 @@ import javax.inject.Singleton
         ApplicationModule::class,
         TeamSyncServiceInjectorModule::class,
         TeamListInjectorModule::class,
+        ViewModelsModule::class,
         RoomModule::class))
 interface ApplicationComponent {
 
