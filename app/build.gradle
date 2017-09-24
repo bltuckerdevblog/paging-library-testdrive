@@ -53,6 +53,9 @@ dependencies {
     //Paging Library
     implementation "android.arch.paging:runtime:1.0.0-alpha2"
 
+    implementation "android.arch.persistence.room:runtime:1.0.0-beta1"
+    kapt "android.arch.persistence.room:compiler:1.0.0-beta1"
+
     testImplementation 'junit:junit:4.12'
 
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
