@@ -1,16 +1,30 @@
 package com.abnormallydriven.paginglibrarytestdrive
 
 import com.abnormallydriven.paginglibrarytestdrive.sync.FootballApi
+import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import okhttp3.*
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import javax.inject.Singleton
 
 
 @Module
 class HttpModule {
+
+    @Provides
+    @Singleton
+    fun provideGson() : Gson {
+        return Gson()
+    }
+
+    @Provides
+    @Singleton
+    fun provideGsonConverterFactory(gson : Gson) : GsonConverterFactory {
+        return GsonConverterFactory.create(gson)
+    }
 
 
     @Provides
@@ -45,10 +59,11 @@ class HttpModule {
 
     @Provides
     @Singleton
-    fun provideRetrofitClient(okhttpClient: OkHttpClient): Retrofit{
+    fun provideRetrofitClient(okhttpClient: OkHttpClient, gsonConverterFactory: GsonConverterFactory): Retrofit{
         return Retrofit.Builder()
                 .baseUrl("http://www.football-data.org/v1/")
                 .client(okhttpClient)
+                .addConverterFactory(gsonConverterFactory)
                 .build()
     }
 

@@ -1,6 +1,8 @@
 package com.abnormallydriven.paginglibrarytestdrive
 
 import android.content.Context
+import android.content.SharedPreferences
+import android.preference.PreferenceManager
 import dagger.Module
 import dagger.Provides
 import java.io.File
@@ -22,6 +24,12 @@ class ApplicationModule(private val applicationContent: PagingLibraryTestDriveAp
     @Singleton
     fun provideCacheDirectory(): File {
         return applicationContent.cacheDir
+    }
+
+    @Provides
+    @Singleton
+    fun provideSharedPreferences() : SharedPreferences{
+        return PreferenceManager.getDefaultSharedPreferences(applicationContent)
     }
 
 }

@@ -1,5 +1,6 @@
 package com.abnormallydriven.paginglibrarytestdrive
 
+import com.abnormallydriven.paginglibrarytestdrive.sync.RoomModule
 import com.abnormallydriven.paginglibrarytestdrive.sync.TeamSyncServiceInjectorModule
 import com.abnormallydriven.paginglibrarytestdrive.teamlist.TeamListInjectorModule
 import dagger.Component
@@ -12,7 +13,8 @@ import javax.inject.Singleton
         AndroidInjectionModule::class,
         ApplicationModule::class,
         TeamSyncServiceInjectorModule::class,
-        TeamListInjectorModule::class))
+        TeamListInjectorModule::class,
+        RoomModule::class))
 interface ApplicationComponent {
 
     fun inject(pagingLibraryTestDriveApp: PagingLibraryTestDriveApp)
