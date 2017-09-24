@@ -28,6 +28,7 @@ class DataSyncer @Inject constructor( @ApplicationContext private val appContext
             return
         }
 
+        sharedPreferences.edit().putLong("lastSyncTime", currentTime).apply()
         val workIntent = Intent(appContext, TeamSyncService::class.java)
         JobIntentService.enqueueWork(appContext, TeamSyncService::class.java, 1, workIntent)
     }
