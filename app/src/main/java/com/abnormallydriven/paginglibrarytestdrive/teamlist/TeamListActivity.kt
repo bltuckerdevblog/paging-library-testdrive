@@ -45,6 +45,29 @@ class TeamListActivity : AppCompatActivity() {
 
         //
         //Use The Tiled Data Source
+//        AppToolkitTaskExecutor.getIOThreadExecutor()
+//                .execute({
+//
+//                    val pagedListConfig = PagedList.Config.Builder()
+//                            .setPageSize(20)
+//                            .setPrefetchDistance(20)
+//                            .build()
+//
+//                    val pagedList: PagedList<Team> = PagedList.Builder<Int, Team>()
+//                            .setInitialKey(100)
+//                            .setConfig(pagedListConfig)
+//                            .setDataSource(viewModel.tiledDataSource)
+//                            .setMainThreadExecutor(AppToolkitTaskExecutor.getMainThreadExecutor())
+//                            .setBackgroundThreadExecutor(AppToolkitTaskExecutor.getIOThreadExecutor())
+//                            .build()
+//
+//                    AppToolkitTaskExecutor.getMainThreadExecutor()
+//                            .execute { teamAdapter.setList(pagedList) }
+//
+//                })
+
+        //
+        //Custom tiled datasource
         AppToolkitTaskExecutor.getIOThreadExecutor()
                 .execute({
 
@@ -54,15 +77,16 @@ class TeamListActivity : AppCompatActivity() {
                             .build()
 
                     val pagedList: PagedList<Team> = PagedList.Builder<Int, Team>()
-                            .setInitialKey(100)
+                            .setInitialKey(0)
                             .setConfig(pagedListConfig)
-                            .setDataSource(viewModel.tiledDataSource)
+                            .setDataSource(viewModel.teamDataSource)
                             .setMainThreadExecutor(AppToolkitTaskExecutor.getMainThreadExecutor())
                             .setBackgroundThreadExecutor(AppToolkitTaskExecutor.getIOThreadExecutor())
                             .build()
 
                     AppToolkitTaskExecutor.getMainThreadExecutor()
                             .execute { teamAdapter.setList(pagedList) }
+
 
                 })
 

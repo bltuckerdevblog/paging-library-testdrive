@@ -12,7 +12,7 @@ class TeamListAdapter @Inject constructor(teamDiffCallback: TeamDiffCallback) : 
 
 
     override fun onBindViewHolder(holder: TeamViewHolder?, position: Int) {
-        if (holder != null) {
+        if (holder != null && position < itemCount) {
             getItem(position)?.let { holder.bind(it) }
         }
     }

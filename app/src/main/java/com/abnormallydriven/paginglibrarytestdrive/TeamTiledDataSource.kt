@@ -33,6 +33,6 @@ class TeamTiledDataSource @Inject constructor(
     override fun countItems(): Int = teamDao.getTeamCount()
 
     override fun loadRange(startPosition: Int, count: Int): MutableList<Team> {
-        return teamDao.getTeamsArray(startPosition).toMutableList()
+        return teamDao.getTeamsArray(startPosition, count).toMutableList()
     }
 }

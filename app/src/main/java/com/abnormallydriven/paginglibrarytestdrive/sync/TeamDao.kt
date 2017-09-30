@@ -20,8 +20,8 @@ interface TeamDao {
     @Query("SELECT * FROM teams WHERE teamId >= :teamId order by name ASC")
     fun getTeamsAsTiledDataSource(teamId : Int) : TiledDataSource<Team>
 
-    @Query("SELECT * FROM teams order by name ASC LIMIT 10 OFFSET :offset")
-    fun getTeamsArray(offset : Int) : Array<Team>
+    @Query("SELECT * FROM teams order by name ASC LIMIT :limit OFFSET :offset")
+    fun getTeamsArray(offset : Int, limit : Int) : Array<Team>
 
     @Query("SELECT * FROM teams order by name ASC")
     fun getAllTeams() : Array<Team>
