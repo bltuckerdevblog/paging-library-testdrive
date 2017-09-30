@@ -26,12 +26,7 @@ constructor(private val teamDao: TeamDao) : ViewModel(){
                 .build()
 
         userListLiveData = teamDao.getTeamsAsLivePagedListProvider().create(0, pagedListConfig)
-        tiledDataSource = teamDao.getTeamsAsTiledDataSource()
+        tiledDataSource = teamDao.getTeamsAsTiledDataSource(100)
 
     }
-
-
-
-
-
 }

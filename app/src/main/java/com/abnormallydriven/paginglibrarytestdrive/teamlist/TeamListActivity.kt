@@ -1,8 +1,10 @@
 package com.abnormallydriven.paginglibrarytestdrive.teamlist
 
+import android.arch.core.executor.AppToolkitTaskExecutor
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
+import android.arch.paging.PagedList
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -14,13 +16,13 @@ import javax.inject.Inject
 
 class TeamListActivity : AppCompatActivity() {
 
-    @Inject lateinit var dataSyncer : DataSyncer
+    @Inject lateinit var dataSyncer: DataSyncer
 
-    @Inject lateinit var viewModelFactory : ViewModelProvider.Factory
+    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    @Inject lateinit var teamAdapter : TeamListAdapter
+    @Inject lateinit var teamAdapter: TeamListAdapter
 
-    lateinit var viewModel : TeamsViewModel
+    lateinit var viewModel: TeamsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -35,7 +37,35 @@ class TeamListActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = teamAdapter
 
-        viewModel.userListLiveData.observe(this, Observer(teamAdapter::setList))
+
+        //
+        //Use the LivePagedListProvider Query
+//        viewModel.userListLiveData.observe(this, Observer(teamAdapter::setList))
+
+
+        //
+        //Use The Tiled Data Source
+        AppToolkitTaskExecutor.getIOThreadExecutor()
+                .execute({
+
+                    val pagedListConfig = PagedList.Config.Builder()
+                            .setPageSize(20)
+                            .setPrefetchDistance(20)
+                            .build()
+
+                    val pagedList: PagedList<Team> = PagedList.Builder<Int, Team>()
+                            .setInitialKey(100)
+                            .setConfig(pagedListConfig)
+                            .setDataSource(viewModel.tiledDataSource)
+                            .setMainThreadExecutor(AppToolkitTaskExecutor.getMainThreadExecutor())
+                            .setBackgroundThreadExecutor(AppToolkitTaskExecutor.getIOThreadExecutor())
+                            .build()
+
+                    AppToolkitTaskExecutor.getMainThreadExecutor()
+                            .execute { teamAdapter.setList(pagedList) }
+
+                })
+
 
     }
 }
