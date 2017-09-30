@@ -26,4 +26,7 @@ interface TeamDao {
     @Query("SELECT * FROM teams order by name ASC")
     fun getAllTeams() : Array<Team>
 
+    @Query("SELECT COUNT(*) FROM teams")
+    fun getTeamCount() : Int
+
 }
