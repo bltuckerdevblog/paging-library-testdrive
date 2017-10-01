@@ -2,10 +2,8 @@ package com.abnormallydriven.paginglibrarytestdrive.teamlist
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel
-import android.arch.paging.LivePagedListProvider
 import android.arch.paging.PagedList
 import android.arch.paging.TiledDataSource
-import com.abnormallydriven.paginglibrarytestdrive.TeamTiledDataSource
 
 import com.abnormallydriven.paginglibrarytestdrive.sync.TeamDao
 
@@ -15,7 +13,8 @@ import javax.inject.Singleton
 @Singleton
 class TeamsViewModel @Inject
 constructor(private val teamDao: TeamDao,
-            val teamDataSource : TeamTiledDataSource) : ViewModel(){
+            val teamDataSource : TeamTiledDataSource,
+            val keyedTeamDataSource : TeamKeyedDataSource) : ViewModel(){
 
     val userListLiveData : LiveData<PagedList<Team>>
 

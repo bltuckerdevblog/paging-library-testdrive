@@ -1,10 +1,9 @@
-package com.abnormallydriven.paginglibrarytestdrive
+package com.abnormallydriven.paginglibrarytestdrive.teamlist
 
 import android.arch.paging.TiledDataSource
 import android.arch.persistence.room.InvalidationTracker
 import com.abnormallydriven.paginglibrarytestdrive.sync.TeamDao
 import com.abnormallydriven.paginglibrarytestdrive.sync.TeamDatabase
-import com.abnormallydriven.paginglibrarytestdrive.teamlist.Team
 import javax.inject.Inject
 import javax.inject.Singleton
 

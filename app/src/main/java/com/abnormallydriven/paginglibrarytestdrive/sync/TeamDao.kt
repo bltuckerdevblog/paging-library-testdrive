@@ -12,21 +12,32 @@ import com.abnormallydriven.paginglibrarytestdrive.teamlist.Team
 interface TeamDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertTeam(team : Team)
+    fun insertTeam(team: Team)
 
     @Query("SELECT * FROM teams order by name ASC")
     fun getTeamsAsLivePagedListProvider(): LivePagedListProvider<Int, Team>
 
     @Query("SELECT * FROM teams WHERE teamId >= :teamId order by name ASC")
-    fun getTeamsAsTiledDataSource(teamId : Int) : TiledDataSource<Team>
+    fun getTeamsAsTiledDataSource(teamId: Int): TiledDataSource<Team>
 
     @Query("SELECT * FROM teams order by name ASC LIMIT :limit OFFSET :offset")
-    fun getTeamsArray(offset : Int, limit : Int) : Array<Team>
+    fun getTeamsArray(offset: Int, limit: Int): Array<Team>
 
     @Query("SELECT * FROM teams order by name ASC")
-    fun getAllTeams() : Array<Team>
+    fun getAllTeams(): Array<Team>
 
     @Query("SELECT COUNT(*) FROM teams")
-    fun getTeamCount() : Int
+    fun getTeamCount(): Int
+
+    //For Keyed Datasources
+    @Query("SELECT * FROM teams ORDER BY name DESC LIMIT :limit")
+    fun getInitialData(limit: Int): Array<Team>
+
+    @Query("SELECT * FROM teams WHERE name < :name ORDER BY name DESC LIMIT :limit")
+    fun getDataAfterName(name: String, limit: Int): Array<Team>
+
+    @Query("SELECT * FROM teams where name > :name ORDER BY name ASC LIMIT :limit")
+    fun getDataBeforeName(name: String, limit: Int): Array<Team>
+
 
 }

@@ -68,7 +68,32 @@ class TeamListActivity : AppCompatActivity() {
 
         //
         //Custom tiled datasource
-        AppToolkitTaskExecutor.getIOThreadExecutor()
+//        AppToolkitTaskExecutor.getIOThreadExecutor()
+//                .execute({
+//
+//                    val pagedListConfig = PagedList.Config.Builder()
+//                            .setPageSize(20)
+//                            .setPrefetchDistance(20)
+//                            .build()
+//
+//                    val pagedList: PagedList<Team> = PagedList.Builder<Int, Team>()
+//                            .setInitialKey(0)
+//                            .setConfig(pagedListConfig)
+//                            .setDataSource(viewModel.teamDataSource)
+//                            .setMainThreadExecutor(AppToolkitTaskExecutor.getMainThreadExecutor())
+//                            .setBackgroundThreadExecutor(AppToolkitTaskExecutor.getIOThreadExecutor())
+//                            .build()
+//
+//                    AppToolkitTaskExecutor.getMainThreadExecutor()
+//                            .execute { teamAdapter.setList(pagedList) }
+//
+//
+//                })
+
+
+        //
+        //Keyed data source
+                AppToolkitTaskExecutor.getIOThreadExecutor()
                 .execute({
 
                     val pagedListConfig = PagedList.Config.Builder()
@@ -76,10 +101,10 @@ class TeamListActivity : AppCompatActivity() {
                             .setPrefetchDistance(20)
                             .build()
 
-                    val pagedList: PagedList<Team> = PagedList.Builder<Int, Team>()
-                            .setInitialKey(0)
+                    val pagedList: PagedList<Team> = PagedList.Builder<String, Team>()
+                            .setInitialKey("Arsenal FC")
                             .setConfig(pagedListConfig)
-                            .setDataSource(viewModel.teamDataSource)
+                            .setDataSource(viewModel.keyedTeamDataSource)
                             .setMainThreadExecutor(AppToolkitTaskExecutor.getMainThreadExecutor())
                             .setBackgroundThreadExecutor(AppToolkitTaskExecutor.getIOThreadExecutor())
                             .build()
@@ -89,7 +114,6 @@ class TeamListActivity : AppCompatActivity() {
 
 
                 })
-
 
     }
 }
