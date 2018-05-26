@@ -4,7 +4,7 @@ import com.abnormallydriven.paginglibrarytestdrive.BuildConfig
 import com.abnormallydriven.paginglibrarytestdrive.names.NamesApi
 import com.abnormallydriven.paginglibrarytestdrive.products.ProductsApi
 import com.abnormallydriven.paginglibrarytestdrive.teamlist.DataService
-import com.abnormallydriven.paginglibrarytestdrive.sync.FootballApi
+import com.abnormallydriven.paginglibrarytestdrive.teamlist.sync.FootballApi
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides

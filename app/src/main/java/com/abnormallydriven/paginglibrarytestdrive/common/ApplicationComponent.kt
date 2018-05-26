@@ -3,8 +3,8 @@ package com.abnormallydriven.paginglibrarytestdrive.common
 import com.abnormallydriven.paginglibrarytestdrive.PagingLibraryTestDriveApp
 import com.abnormallydriven.paginglibrarytestdrive.names.NamesActivityInjectorModule
 import com.abnormallydriven.paginglibrarytestdrive.products.ProductsActivityInjectorModule
-import com.abnormallydriven.paginglibrarytestdrive.sync.RoomModule
-import com.abnormallydriven.paginglibrarytestdrive.sync.TeamSyncServiceInjectorModule
+import com.abnormallydriven.paginglibrarytestdrive.teamlist.sync.RoomModule
+import com.abnormallydriven.paginglibrarytestdrive.teamlist.sync.TeamSyncServiceInjectorModule
 import com.abnormallydriven.paginglibrarytestdrive.teamlist.TeamListInjectorModule
 import dagger.Component
 import dagger.android.AndroidInjectionModule

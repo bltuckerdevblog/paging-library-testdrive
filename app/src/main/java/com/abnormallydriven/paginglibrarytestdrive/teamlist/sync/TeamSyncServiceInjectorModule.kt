@@ -1,4 +1,4 @@
-package com.abnormallydriven.paginglibrarytestdrive.sync
+package com.abnormallydriven.paginglibrarytestdrive.teamlist.sync
 
 import android.app.Service
 import dagger.Binds

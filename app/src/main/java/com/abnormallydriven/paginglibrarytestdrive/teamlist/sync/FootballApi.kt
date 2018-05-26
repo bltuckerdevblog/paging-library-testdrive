@@ -1,4 +1,4 @@
-package com.abnormallydriven.paginglibrarytestdrive.sync
+package com.abnormallydriven.paginglibrarytestdrive.teamlist.sync
 
 import com.abnormallydriven.paginglibrarytestdrive.teamlist.TeamListResponse
 import retrofit2.Call

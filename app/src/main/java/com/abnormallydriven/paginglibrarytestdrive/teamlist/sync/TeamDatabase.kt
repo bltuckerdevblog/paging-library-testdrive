@@ -1,4 +1,4 @@
-package com.abnormallydriven.paginglibrarytestdrive.sync
+package com.abnormallydriven.paginglibrarytestdrive.teamlist.sync
 
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase

@@ -1,10 +1,7 @@
-package com.abnormallydriven.paginglibrarytestdrive.sync
+package com.abnormallydriven.paginglibrarytestdrive.teamlist.sync
 
-import android.app.Service
 import dagger.Subcomponent
 import dagger.android.AndroidInjector
-import android.app.Activity
-
 
 
 @Subcomponent

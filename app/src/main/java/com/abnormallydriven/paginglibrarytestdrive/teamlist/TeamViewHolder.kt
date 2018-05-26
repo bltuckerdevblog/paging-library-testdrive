@@ -7,19 +7,10 @@ import com.abnormallydriven.paginglibrarytestdrive.R
 
 class TeamViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    lateinit var teamNameTextView : TextView
-
-    init{
-        teamNameTextView = itemView.findViewById(R.id.team_name_text_view)
-    }
-
+    private val teamNameTextView : TextView = itemView.findViewById(R.id.team_name_text_view)
 
     fun bind(team : Team){
-
         teamNameTextView.text = team.name
-
-
-
     }
 
 }

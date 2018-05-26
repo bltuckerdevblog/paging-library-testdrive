@@ -1,6 +1,6 @@
 package com.abnormallydriven.paginglibrarytestdrive.teamlist
 
-import com.abnormallydriven.paginglibrarytestdrive.sync.TeamDto
+import com.abnormallydriven.paginglibrarytestdrive.teamlist.sync.TeamDto
 import com.google.gson.annotations.SerializedName
 
 data class TeamListResponse(

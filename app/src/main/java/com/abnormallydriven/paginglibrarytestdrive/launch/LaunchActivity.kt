@@ -7,6 +7,7 @@ import android.widget.Button
 import com.abnormallydriven.paginglibrarytestdrive.R
 import com.abnormallydriven.paginglibrarytestdrive.names.NamesActivity
 import com.abnormallydriven.paginglibrarytestdrive.products.ProductsActivity
+import com.abnormallydriven.paginglibrarytestdrive.teamlist.TeamListActivity
 
 class LaunchActivity : AppCompatActivity() {
 
@@ -17,7 +18,7 @@ class LaunchActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.positional_data_source)
                 .setOnClickListener { v ->
-                    //launch activity for positional data source
+                    startActivity(Intent(this@LaunchActivity, TeamListActivity::class.java))
                 }
 
 
