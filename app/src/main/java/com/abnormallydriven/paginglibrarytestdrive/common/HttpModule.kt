@@ -1,6 +1,7 @@
 package com.abnormallydriven.paginglibrarytestdrive.common
 
 import com.abnormallydriven.paginglibrarytestdrive.BuildConfig
+import com.abnormallydriven.paginglibrarytestdrive.names.NamesApi
 import com.abnormallydriven.paginglibrarytestdrive.teamlist.DataService
 import com.abnormallydriven.paginglibrarytestdrive.sync.FootballApi
 import com.google.gson.Gson
@@ -52,7 +53,8 @@ class HttpModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(cache: Cache, defaultHeaderInterceptor: Interceptor) : OkHttpClient{
+    @FootbalHttpClient
+    fun provideFootballOkHttpClient(cache: Cache, defaultHeaderInterceptor: Interceptor) : OkHttpClient{
         val builder = OkHttpClient.Builder()
                 .cache(cache)
                 .addInterceptor(defaultHeaderInterceptor)
@@ -62,7 +64,8 @@ class HttpModule {
 
     @Provides
     @Singleton
-    fun provideRetrofitClient(okhttpClient: OkHttpClient, gsonConverterFactory: GsonConverterFactory): Retrofit{
+    @FootballRetrofit
+    fun provideFootballRetrofitClient(@FootbalHttpClient okhttpClient: OkHttpClient, gsonConverterFactory: GsonConverterFactory): Retrofit{
         return Retrofit.Builder()
                 .baseUrl("http://www.football-data.org/v1/")
                 .client(okhttpClient)
@@ -72,7 +75,32 @@ class HttpModule {
 
     @Provides
     @Singleton
-    fun provideFootballApiService(retrofit : Retrofit) : FootballApi{
+    fun provideOkHttpClient(cache: Cache) : OkHttpClient{
+        val builder = OkHttpClient.Builder()
+                .cache(cache)
+
+        return builder.build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideRetrofitClient(okhttpClient: OkHttpClient, gsonConverterFactory: GsonConverterFactory): Retrofit{
+        return Retrofit.Builder()
+                .baseUrl("http://10.0.2.2:4567/")
+                .client(okhttpClient)
+                .addConverterFactory(gsonConverterFactory)
+                .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideNamesApi(retrofit: Retrofit): NamesApi {
+        return retrofit.create(NamesApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideFootballApiService( @FootballRetrofit retrofit : Retrofit) : FootballApi{
         return retrofit.create(FootballApi::class.java)
     }
 
@@ -88,7 +116,7 @@ class HttpModule {
                 .baseUrl("http://10.0.2.2:4567/")
                 .client(okhttpClient)
                 .addConverterFactory(ScalarsConverterFactory.create())
-//                .addConverterFactory(gsonConverterFactory)
+                .addConverterFactory(gsonConverterFactory)
                 .build()
 
 

@@ -1,9 +1,11 @@
 package com.abnormallydriven.paginglibrarytestdrive.launch
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import com.abnormallydriven.paginglibrarytestdrive.R
+import com.abnormallydriven.paginglibrarytestdrive.names.NamesActivity
 
 class LaunchActivity : AppCompatActivity() {
 
@@ -25,7 +27,7 @@ class LaunchActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.item_keyed_data_source)
                 .setOnClickListener { v ->
-                    //launch activity for item keyed data source
+                    startActivity(Intent(this@LaunchActivity, NamesActivity::class.java))
                 }
 
 

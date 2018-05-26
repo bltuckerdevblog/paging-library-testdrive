@@ -20,7 +20,7 @@ class DataSyncer @Inject constructor(@ApplicationContext private val appContext 
     }
 
 
-    override fun onCreate(owner: LifecycleOwner?) {
+    override fun onCreate(owner: LifecycleOwner) {
         val lastSyncTime = sharedPreferences.getLong("lastSyncTime", 0)
         val currentTime = System.currentTimeMillis()
 
