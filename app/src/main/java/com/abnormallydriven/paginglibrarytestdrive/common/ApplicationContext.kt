@@ -1,4 +1,4 @@
-package com.abnormallydriven.paginglibrarytestdrive
+package com.abnormallydriven.paginglibrarytestdrive.common
 
 import java.lang.annotation.Documented
 import javax.inject.Qualifier

@@ -6,14 +6,14 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.support.v4.app.JobIntentService
-import com.abnormallydriven.paginglibrarytestdrive.ApplicationContext
+import com.abnormallydriven.paginglibrarytestdrive.common.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
 
 
 @Singleton
-class DataSyncer @Inject constructor( @ApplicationContext private val appContext : Context,
-                                      private val sharedPreferences: SharedPreferences) : DefaultLifecycleObserver {
+class DataSyncer @Inject constructor(@ApplicationContext private val appContext : Context,
+                                     private val sharedPreferences: SharedPreferences) : DefaultLifecycleObserver {
 
     companion object {
         val SYNC_PERIOD = 1000 * 60 * 60

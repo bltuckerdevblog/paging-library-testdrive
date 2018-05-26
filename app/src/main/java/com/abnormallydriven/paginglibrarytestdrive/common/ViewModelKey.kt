@@ -1,4 +1,4 @@
-package com.abnormallydriven.paginglibrarytestdrive
+package com.abnormallydriven.paginglibrarytestdrive.common
 
 import android.arch.lifecycle.ViewModel
 import dagger.MapKey

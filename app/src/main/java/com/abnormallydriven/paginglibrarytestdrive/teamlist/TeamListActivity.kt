@@ -1,15 +1,17 @@
 package com.abnormallydriven.paginglibrarytestdrive.teamlist
 
 import android.arch.core.executor.AppToolkitTaskExecutor
-import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
+import android.arch.paging.KeyedDataSource
 import android.arch.paging.PagedList
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import com.abnormallydriven.paginglibrarytestdrive.HttpKeyedDataSource
 import com.abnormallydriven.paginglibrarytestdrive.R
+import com.abnormallydriven.paginglibrarytestdrive.common.StringRecycleAdapter
 import com.abnormallydriven.paginglibrarytestdrive.sync.DataSyncer
 import dagger.android.AndroidInjection
 import javax.inject.Inject
@@ -22,7 +24,15 @@ class TeamListActivity : AppCompatActivity() {
 
     @Inject lateinit var teamAdapter: TeamListAdapter
 
+    @Inject lateinit var httpDataSource : HttpTiledDataSource
+
+    @Inject lateinit var stringRecyclerAdapter : StringRecycleAdapter
+
+    @Inject lateinit var keyedHttpDataSource : HttpKeyedDataSource
+
     lateinit var viewModel: TeamsViewModel
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -35,7 +45,10 @@ class TeamListActivity : AppCompatActivity() {
 
         val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        recyclerView.adapter = teamAdapter
+
+
+        //Team Adapter
+//        recyclerView.adapter = teamAdapter
 
 
         //
@@ -93,7 +106,31 @@ class TeamListActivity : AppCompatActivity() {
 
         //
         //Keyed data source
-                AppToolkitTaskExecutor.getIOThreadExecutor()
+//                AppToolkitTaskExecutor.getIOThreadExecutor()
+//                .execute({
+//
+//                    val pagedListConfig = PagedList.Config.Builder()
+//                            .setPageSize(20)
+//                            .setPrefetchDistance(20)
+//                            .build()
+//
+//                    val pagedList: PagedList<Team> = PagedList.Builder<String, Team>()
+//                            .setInitialKey("Arsenal FC")
+//                            .setConfig(pagedListConfig)
+//                            .setDataSource(viewModel.keyedTeamDataSource)
+//                            .setMainThreadExecutor(AppToolkitTaskExecutor.getMainThreadExecutor())
+//                            .setBackgroundThreadExecutor(AppToolkitTaskExecutor.getIOThreadExecutor())
+//                            .build()
+//
+//                    AppToolkitTaskExecutor.getMainThreadExecutor()
+//                            .execute { teamAdapter.setList(pagedList) }
+//
+//
+//                })
+
+        recyclerView.adapter = stringRecyclerAdapter
+
+        AppToolkitTaskExecutor.getIOThreadExecutor()
                 .execute({
 
                     val pagedListConfig = PagedList.Config.Builder()
@@ -101,16 +138,24 @@ class TeamListActivity : AppCompatActivity() {
                             .setPrefetchDistance(20)
                             .build()
 
-                    val pagedList: PagedList<Team> = PagedList.Builder<String, Team>()
-                            .setInitialKey("Arsenal FC")
+//                    val pagedList: PagedList<String> = PagedList.Builder<Int, String>()
+//                            .setInitialKey(1)
+//                            .setConfig(pagedListConfig)
+//                            .setDataSource(httpDataSource)
+//                            .setMainThreadExecutor(AppToolkitTaskExecutor.getMainThreadExecutor())
+//                            .setBackgroundThreadExecutor(AppToolkitTaskExecutor.getIOThreadExecutor())
+//                            .build()
+
+                    val pagedList: PagedList<String> = PagedList.Builder<String, String>()
+                            .setInitialKey("0")
                             .setConfig(pagedListConfig)
-                            .setDataSource(viewModel.keyedTeamDataSource)
+                            .setDataSource(keyedHttpDataSource)
                             .setMainThreadExecutor(AppToolkitTaskExecutor.getMainThreadExecutor())
                             .setBackgroundThreadExecutor(AppToolkitTaskExecutor.getIOThreadExecutor())
                             .build()
 
                     AppToolkitTaskExecutor.getMainThreadExecutor()
-                            .execute { teamAdapter.setList(pagedList) }
+                            .execute { stringRecyclerAdapter.setList(pagedList) }
 
 
                 })

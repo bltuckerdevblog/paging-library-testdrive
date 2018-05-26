@@ -3,7 +3,7 @@ package com.abnormallydriven.paginglibrarytestdrive.teamlist
 import android.arch.paging.PagedListAdapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.abnormallydriven.paginglibrarytestdrive.ActivityScope
+import com.abnormallydriven.paginglibrarytestdrive.common.ActivityScope
 import com.abnormallydriven.paginglibrarytestdrive.R
 import javax.inject.Inject
 

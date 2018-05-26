@@ -2,10 +2,8 @@ package com.abnormallydriven.paginglibrarytestdrive.sync
 
 
 import android.arch.persistence.room.Room
-import android.arch.persistence.room.RoomDatabase
 import android.content.Context
-import com.abnormallydriven.paginglibrarytestdrive.ApplicationContext
-import com.abnormallydriven.paginglibrarytestdrive.teamlist.Team
+import com.abnormallydriven.paginglibrarytestdrive.common.ApplicationContext
 
 import javax.inject.Singleton
 

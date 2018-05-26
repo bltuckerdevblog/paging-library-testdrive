@@ -3,12 +3,15 @@ package com.abnormallydriven.paginglibrarytestdrive
 import android.app.Activity
 import android.app.Application
 import android.app.Service
+import com.abnormallydriven.paginglibrarytestdrive.common.ApplicationComponent
+import com.abnormallydriven.paginglibrarytestdrive.common.ApplicationModule
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import dagger.android.HasServiceInjector
 import javax.inject.Inject
 
+//person name search
 
 class PagingLibraryTestDriveApp: Application(), HasActivityInjector, HasServiceInjector {
 

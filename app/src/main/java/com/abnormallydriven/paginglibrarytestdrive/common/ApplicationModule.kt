@@ -1,8 +1,9 @@
-package com.abnormallydriven.paginglibrarytestdrive
+package com.abnormallydriven.paginglibrarytestdrive.common
 
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
+import com.abnormallydriven.paginglibrarytestdrive.PagingLibraryTestDriveApp
 import dagger.Module
 import dagger.Provides
 import java.io.File

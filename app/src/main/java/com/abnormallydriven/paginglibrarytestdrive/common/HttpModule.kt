@@ -1,5 +1,7 @@
-package com.abnormallydriven.paginglibrarytestdrive
+package com.abnormallydriven.paginglibrarytestdrive.common
 
+import com.abnormallydriven.paginglibrarytestdrive.BuildConfig
+import com.abnormallydriven.paginglibrarytestdrive.teamlist.DataService
 import com.abnormallydriven.paginglibrarytestdrive.sync.FootballApi
 import com.google.gson.Gson
 import dagger.Module
@@ -7,6 +9,7 @@ import dagger.Provides
 import okhttp3.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.io.File
 import javax.inject.Singleton
 
@@ -71,6 +74,25 @@ class HttpModule {
     @Singleton
     fun provideFootballApiService(retrofit : Retrofit) : FootballApi{
         return retrofit.create(FootballApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideDataService(gsonConverterFactory: GsonConverterFactory) : DataService {
+
+        val okhttpClient = OkHttpClient.Builder()
+                .build()
+
+
+        val retrofit = Retrofit.Builder()
+                .baseUrl("http://10.0.2.2:4567/")
+                .client(okhttpClient)
+                .addConverterFactory(ScalarsConverterFactory.create())
+//                .addConverterFactory(gsonConverterFactory)
+                .build()
+
+
+        return retrofit.create(DataService::class.java)
     }
 
 }

@@ -1,5 +1,6 @@
-package com.abnormallydriven.paginglibrarytestdrive
+package com.abnormallydriven.paginglibrarytestdrive.common
 
+import com.abnormallydriven.paginglibrarytestdrive.PagingLibraryTestDriveApp
 import com.abnormallydriven.paginglibrarytestdrive.sync.RoomModule
 import com.abnormallydriven.paginglibrarytestdrive.sync.TeamSyncServiceInjectorModule
 import com.abnormallydriven.paginglibrarytestdrive.teamlist.TeamListInjectorModule
