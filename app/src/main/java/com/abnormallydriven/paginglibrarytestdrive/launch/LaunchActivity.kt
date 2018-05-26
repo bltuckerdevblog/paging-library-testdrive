@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import com.abnormallydriven.paginglibrarytestdrive.R
 import com.abnormallydriven.paginglibrarytestdrive.names.NamesActivity
+import com.abnormallydriven.paginglibrarytestdrive.products.ProductsActivity
 
 class LaunchActivity : AppCompatActivity() {
 
@@ -22,7 +23,7 @@ class LaunchActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.paged_key_data_source)
                 .setOnClickListener { v ->
-                    //launch activity for paged key data source
+                    startActivity(Intent(this@LaunchActivity, ProductsActivity::class.java))
                 }
 
         findViewById<Button>(R.id.item_keyed_data_source)

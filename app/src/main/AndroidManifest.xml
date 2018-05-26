@@ -29,6 +29,8 @@
         </activity>
         <activity android:name=".names.NamesActivity">
         </activity>
+        <activity android:name=".products.ProductsActivity">
+        </activity>
     </application>
 
 </manifest>

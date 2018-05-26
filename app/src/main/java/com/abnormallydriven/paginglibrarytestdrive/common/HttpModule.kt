@@ -2,6 +2,7 @@ package com.abnormallydriven.paginglibrarytestdrive.common
 
 import com.abnormallydriven.paginglibrarytestdrive.BuildConfig
 import com.abnormallydriven.paginglibrarytestdrive.names.NamesApi
+import com.abnormallydriven.paginglibrarytestdrive.products.ProductsApi
 import com.abnormallydriven.paginglibrarytestdrive.teamlist.DataService
 import com.abnormallydriven.paginglibrarytestdrive.sync.FootballApi
 import com.google.gson.Gson
@@ -96,6 +97,12 @@ class HttpModule {
     @Singleton
     fun provideNamesApi(retrofit: Retrofit): NamesApi {
         return retrofit.create(NamesApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideProductsApi(retrofit: Retrofit): ProductsApi {
+        return retrofit.create(ProductsApi::class.java)
     }
 
     @Provides

@@ -2,6 +2,7 @@ package com.abnormallydriven.paginglibrarytestdrive.common
 
 import com.abnormallydriven.paginglibrarytestdrive.PagingLibraryTestDriveApp
 import com.abnormallydriven.paginglibrarytestdrive.names.NamesActivityInjectorModule
+import com.abnormallydriven.paginglibrarytestdrive.products.ProductsActivityInjectorModule
 import com.abnormallydriven.paginglibrarytestdrive.sync.RoomModule
 import com.abnormallydriven.paginglibrarytestdrive.sync.TeamSyncServiceInjectorModule
 import com.abnormallydriven.paginglibrarytestdrive.teamlist.TeamListInjectorModule
@@ -18,7 +19,8 @@ import javax.inject.Singleton
     (TeamListInjectorModule::class),
     (ViewModelsModule::class),
     (RoomModule::class),
-    (NamesActivityInjectorModule::class)])
+    (NamesActivityInjectorModule::class),
+    (ProductsActivityInjectorModule::class)])
 interface ApplicationComponent {
 
     fun inject(pagingLibraryTestDriveApp: PagingLibraryTestDriveApp)
